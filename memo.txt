@@ -1,9 +1,15 @@
 ■DB Back
 mysqldump -u [new_user] -p [database_name] > [file_name].sql
 
+→gzip
+mysqldump -u [new_user] -p [database_name] | gzip > [file_name].sql.gz
+
 
 ■DB Restore
 mysql -u [new_user] -p [database_name] < [file_name].sql
+
+→gzip
+mysql -u [new_user] -p [database_name] < gunzip [file_name].sql.gz
 
 
 ■DB Size check
@@ -30,6 +36,15 @@ ALTER TABLE  `table name` CHANGE  `note_0`  `detail` TEXT CHARACTER SET utf8 COL
 DROP USER 'jeffrey'@'localhost';
 
 
+■mysql delete table field
+ALTER TABLE  `table name` DROP  `field name`;
+
+
+■mysql add table field aftter uname
+ALTER TABLE  `table name` ADD  `field name` INT UNSIGNED NOT NULL AFTER  `uname`;
+
+
+
 ■Create Remote Database
 
 CREATE DATABASE database name;
@@ -46,3 +61,4 @@ FLUSH PRIVILEGES;
 
 source by:
 https://www.digitalocean.com/community/tutorials/how-to-set-up-a-remote-database-to-optimize-site-performance-with-mysql
+
