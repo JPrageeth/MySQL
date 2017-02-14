@@ -1,0 +1,48 @@
+■DB Back
+mysqldump -u [new_user] -p [database_name] > [file_name].sql
+
+
+■DB Restore
+mysql -u [new_user] -p [database_name] < [file_name].sql
+
+
+■DB Size check
+SELECT table_schema AS "Database name", SUM(data_length + index_length) / 1024 / 1024 AS "Size (MB)" FROM information_schema.TABLES GROUP BY table_schema;
+
+
+■DB table empty
+TRUNCATE TABLE  table name
+
+
+■Table add field
+ALTER TABLE  `table name` ADD  `add_fiel_name` INT UNSIGNED NOT NULL AFTER  `dt_reg`;
+
+
+■Table Describe
+DESCRIBE table name;
+
+
+■Table Change field
+ALTER TABLE  `table name` CHANGE  `note_0`  `detail` TEXT CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL
+
+
+■Drop User Change field
+DROP USER 'jeffrey'@'localhost';
+
+
+■Create Remote Database
+
+CREATE DATABASE database name;
+
+CREATE USER 'username'@'localhost' IDENTIFIED BY 'password';
+
+GRANT ALL PRIVILEGES ON db_name.* TO 'username'@'localhost';
+
+CREATE USER 'username'@'web private ip' IDENTIFIED BY 'password';
+
+GRANT ALL PRIVILEGES ON db_name.* TO 'username'@'web private ip';
+
+FLUSH PRIVILEGES;
+
+source by:
+https://www.digitalocean.com/community/tutorials/how-to-set-up-a-remote-database-to-optimize-site-performance-with-mysql
