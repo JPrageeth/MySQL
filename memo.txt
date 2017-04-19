@@ -59,6 +59,19 @@ GRANT ALL PRIVILEGES ON db_name.* TO 'username'@'web private ip';
 
 FLUSH PRIVILEGES;
 
+■Database Table Size Search
+
+SELECT
+  TABLE_NAME AS `Table`,
+  ROUND((DATA_LENGTH + INDEX_LENGTH) / 1024 / 1024) AS `Size (MB)`
+FROM
+  information_schema.TABLES
+WHERE
+  TABLE_SCHEMA = "databases name"
+ORDER BY
+  (DATA_LENGTH + INDEX_LENGTH)
+DESC;
+
 source by:
 https://www.digitalocean.com/community/tutorials/how-to-set-up-a-remote-database-to-optimize-site-performance-with-mysql
 
